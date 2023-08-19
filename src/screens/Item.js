@@ -194,7 +194,14 @@ const Item = ({route, navigation}) => {
               renderItem={(items, index) => {
                 // console.log(items.item.data.itemUrl);
                 return (
-                  <View style={[styles.items, {height: 125}]}>
+                  <TouchableOpacity
+                    onPress={() => {
+                      navigation.replace('Item', {
+                        data: items.item,
+                        items: route.params.items,
+                      });
+                    }}
+                    style={[styles.items, {height: 125}]}>
                     {/* The Below View is for rating */}
                     <View
                       style={{
@@ -237,20 +244,13 @@ const Item = ({route, navigation}) => {
                         {items.item.data.type === 'Veg' ? 'Veg' : 'N-Veg'}
                       </Text>
                     </View>
-                    <TouchableOpacity
-                      onPress={() => {
-                        navigation.replace('Item', {
-                          data: items.item,
-                          items: route.params.items,
-                        });
-                      }}
-                      style={{width: '30%', height: '100%'}}>
+                    <View style={{width: '30%', height: '100%'}}>
                       <Image
                         resizeMode="center"
                         source={{uri: items.item.data.itemUrl}}
                         style={styles.itemIcon1}
                       />
-                    </TouchableOpacity>
+                    </View>
 
                     <View style={styles.itemData}>
                       <Text
@@ -291,7 +291,7 @@ const Item = ({route, navigation}) => {
 
                     <View
                       style={{justifyContent: 'center', width: '22%'}}></View>
-                  </View>
+                  </TouchableOpacity>
                 );
               }}
             />

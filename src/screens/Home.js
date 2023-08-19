@@ -278,7 +278,14 @@ export default function Home({}) {
         renderItem={(items, index) => {
           // console.log(items.item.data.itemUrl);
           return (
-            <View style={[styles.items, {height: 125}]}>
+            <TouchableOpacity
+              onPress={() => {
+                navigation.navigate('Item', {
+                  data: items.item,
+                  items: allItems,
+                });
+              }}
+              style={[styles.items, {height: 125}]}>
               {/* The Below View is for rating */}
               <View
                 style={{
@@ -321,20 +328,13 @@ export default function Home({}) {
                   {items.item.data.type === 'Veg' ? 'Veg' : 'N-Veg'}
                 </Text>
               </View>
-              <TouchableOpacity
-                onPress={() => {
-                  navigation.navigate('Item', {
-                    data: items.item,
-                    items: allItems,
-                  });
-                }}
-                style={{width: '30%', height: '100%'}}>
+              <View style={{width: '30%', height: '100%'}}>
                 <Image
                   resizeMode="center"
                   source={{uri: items.item.data.itemUrl}}
                   style={styles.itemIcon}
                 />
-              </TouchableOpacity>
+              </View>
 
               <View style={styles.itemData}>
                 <Text
@@ -407,7 +407,7 @@ export default function Home({}) {
                   /> */}
                 </TouchableOpacity>
               </View>
-            </View>
+            </TouchableOpacity>
           );
         }}
       />
